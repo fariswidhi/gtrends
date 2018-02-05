@@ -19,28 +19,12 @@ var indexController = {};
 		res.render('../views/home',{day:day,week:week,oneMonth:oneMonth,threeMonth:threeMonth,year:year});
 	}
 	else{
-
-// gtrends.relatedQueries({keyword: 'Westminster Dog Show'})
-// .then((res) => {
-//   console.log(res);
-// })
-// .catch((err) => {
-//   console.log(err);
-// })
-		// console.log(moment().subtract(1, 'months').get('year'));
-		// console.log(moment().subtract(1, 'months').get('month')+1);
-		// console.log(moment().subtract(1, 'months').get('date'));
-		// console.log(c);
-		// relatedQueries({keyword: q,startTime: new Date(m),geo:c})
 		gtrends.relatedQueries({keyword: q,geo: c,startTime: new Date(m), endTime: new Date("2018-11-4")})
 
 
 	.then(function(result){
-		// console.log(JSON.stringify(result));
 		
 		res.render('../views/search',{datas:JSON.parse(result).default.rankedList[0]['rankedKeyword'],title:q,week:week,oneMonth:oneMonth,threeMonth:threeMonth,year:year,day:day});
-		// res.json(JSON.parse(result));
-		// JSON.stringify(result);
 		console.log(result);
 		console.log(m);
 		console.log(now);
@@ -64,8 +48,6 @@ indexController.search = function(req,res){
 	.then(function(result){
 		// console.log(JSON.stringify(result));
 		res.render('../views/search',{datas:JSON.parse(result).default.rankedList[0]['rankedKeyword'],title:q});
-		// res.json(JSON.parse(result).default.rankedList[0]['rankedKeyword']);
-		// JSON.stringify(result);
 	})
 	.catch(function(err){
 		console.log(err);
