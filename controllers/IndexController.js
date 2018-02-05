@@ -27,14 +27,15 @@ var indexController = {};
 		gtrends.relatedQueries({keyword: q,startTime: new Date(m),geo:c})
 
 
-	.then(function(result){
+	.then(function(result,err){
 		// console.log(JSON.stringify(result));
+		console.log(err);
 		res.render('../views/search',{datas:JSON.parse(result).default.rankedList[0]['rankedKeyword'],title:q,week:week,oneMonth:oneMonth,threeMonth:threeMonth,year:year,day:day});
 		// res.json(JSON.parse(result));
 		// JSON.stringify(result);
 	})
 	.catch(function(err){
-		console.log(err);
+		res.render('error');
 	});
 
 	}
