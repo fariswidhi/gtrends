@@ -13,28 +13,40 @@ var indexController = {};
 		var oneMonth = moment().month(-1).get('year')+"-"+parseInt(moment().month(-1).get('month')+1)+"-"+moment().month(-1).get('date');
 		var threeMonth = moment().month(-3).get('year')+"-"+parseInt(moment().month(-3).get('month')+1)+"-"+moment().month(-3).get('date');
 		var year = moment().month(-12).get('year')+"-"+moment().month(-12).get('month')+1+"-"+moment().month(-12).get('date');
-
+		var now = moment().day(0).get('year')+"-"+moment().day(0).get('month')+1+"-"+moment().day(0).get('date');
 	if(q==null){
 
 		res.render('../views/home',{day:day,week:week,oneMonth:oneMonth,threeMonth:threeMonth,year:year});
 	}
 	else{
 
+// gtrends.relatedQueries({keyword: 'Westminster Dog Show'})
+// .then((res) => {
+//   console.log(res);
+// })
+// .catch((err) => {
+//   console.log(err);
+// })
 		// console.log(moment().subtract(1, 'months').get('year'));
 		// console.log(moment().subtract(1, 'months').get('month')+1);
 		// console.log(moment().subtract(1, 'months').get('date'));
 		// console.log(c);
-		gtrends.relatedQueries({keyword: q,startTime: new Date(m),geo:c})
+		// relatedQueries({keyword: q,startTime: new Date(m),geo:c})
+		gtrends.relatedQueries({keyword: q,geo: c,startTime: new Date(m), endTime: new Date("2018-11-4")})
 
 
-	.then(function(result,err){
+	.then(function(result){
 		// console.log(JSON.stringify(result));
-		console.log(err);
+		
 		res.render('../views/search',{datas:JSON.parse(result).default.rankedList[0]['rankedKeyword'],title:q,week:week,oneMonth:oneMonth,threeMonth:threeMonth,year:year,day:day});
 		// res.json(JSON.parse(result));
 		// JSON.stringify(result);
+		console.log(result);
+		console.log(m);
+		console.log(now);
 	})
 	.catch(function(err){
+		console.log(err);
 		res.render('error');
 	});
 

@@ -21,7 +21,7 @@
   <div class="row">
     <div class="col-lg-4">
       
-    <input type="text" name="q" class="form-control" placeholder="Keyword">
+    <input type="text" name="q" class="form-control" placeholder="Keyword" autocomplete="off">
     <br>
     </div>
     <div class="col-lg-4">
@@ -55,7 +55,7 @@
       <% if(datas.length>0) { %>
 <ul class="list-group">
           <% for(var i=0; i<datas.length;i++) { %>
-<li class="list-group-item">          <%= datas[i].query%></li>
+<li class="list-group-item"><a target="_blank" href="https://www.google.co.id/search?q=<%= datas[i].query%>"><%= datas[i].query%></a></li>
           <% } %>
           </ul>
       <% } else { %>
@@ -68,7 +68,10 @@
     </div>
 
 
-    <footer class="footer">
+    <footer class="footer"    <% if(datas.length < 5){ %>style="position:absolute" <% } 
+    %>>
+
+
 <center><span class="text-muted">Built With <i class="fas fa-code"></i> By <a href="https://github.com/fariswidhi">Faris</a> In <b>Rembang, Indonesia</b></span></center>
     </footer>
 
