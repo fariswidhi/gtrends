@@ -46,7 +46,7 @@ indexController.search = function(req,res){
 
 
 	.then(function(result){
-		// console.log(JSON.stringify(result));
+		console.log(JSON.stringify(result));
 		res.render('../views/search',{datas:JSON.parse(result).default.rankedList[0]['rankedKeyword'],title:q});
 	})
 	.catch(function(err){
