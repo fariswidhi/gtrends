@@ -54,5 +54,4 @@ indexController.search = function(req,res){
 	});
 }
 
-
 module.exports = indexController;

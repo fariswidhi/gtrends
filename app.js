@@ -1,5 +1,3 @@
-// import 'bootstrap';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 var express = require('express');
 var path = require('path');
@@ -7,20 +5,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-// var $ = require('jquery');
-// window.$ = $;
-// require('bootstrap');
-
-mongoose.Promise = global.Promise;
-
-mongoose.connect('mongodb://localhost/basic_db')
-		.then(() => console.log('connection successfuly'))
-		.catch((err)=>console.log(err))
-;
 
 
-require("./models/Employee");
+
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -32,7 +20,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
+
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
